@@ -16,7 +16,6 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), unique=True, nullable=False)
     password = db.Column(db.String(64), nullable=False)
-    email = db.Column(db.String(64), unique=True)
     createdAt = db.Column(db.String(64))
 
     def __init__(self, username, password):
@@ -63,7 +62,6 @@ def get_all_users():
 
 @app.route('/api/v1/users', methods = ['POST'])
 def create_user():
-    pass
     if not request.json:
         return jsonify({'code': 0, 'message': '错误的数据格式'})
     requestJson = request.get_json()
