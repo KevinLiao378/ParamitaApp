@@ -13,3 +13,6 @@ build
 
 # Virtual environment
 venv
+
+# Test db
+.sqlite
