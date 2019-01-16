@@ -35,7 +35,7 @@ class User(db.Model):
         return json_user
 
 
-@app.route('/api/v1/users/<int:id>', methods = ['GET'])
+@app.route('/v1/users/<int:id>', methods = ['GET'])
 def get_user(id):
     user = User.query.get(id)
     if user is None:
@@ -47,7 +47,7 @@ def get_user(id):
         })
 
 
-@app.route('/api/v1/users', methods = ['GET'])
+@app.route('/v1/users', methods = ['GET'])
 def get_all_users():
     users = User.query.all();
     json_users = []
@@ -60,7 +60,7 @@ def get_all_users():
         })
 
 
-@app.route('/api/v1/users', methods = ['POST'])
+@app.route('/v1/users', methods = ['POST'])
 def create_user():
     if not request.json:
         return jsonify({'code': 0, 'message': '错误的数据格式'})
@@ -76,7 +76,7 @@ def create_user():
     return jsonify({'code': 0, 'message': '用户已存在'})
 
 
-@app.route('/api/v1/users/<int:id>', methods = ['DELETE'])
+@app.route('/v1/users/<int:id>', methods = ['DELETE'])
 def delete_user(id):
     user = User.query.get(id)
     if user is None:
@@ -89,4 +89,4 @@ def delete_user(id):
 if __name__ == '__main__':
     db.drop_all()
     db.create_all()
-    app.run(debug=True)
+    app.run()
